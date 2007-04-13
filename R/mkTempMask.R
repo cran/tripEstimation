@@ -8,10 +8,11 @@ mkTempMask <- function (times, temp.ranges, xlim = c(0.5, 359.5), ylim = c(-89.5
 	xx <- sst$x
 	yy <- sst$y
 	if (!is.null(interp)) {
-		require(fields)
-		xx <- seq(min(sst$x), max(sst$x), by = interp)
-		yy <- seq(min(sst$y), max(sst$y), by = interp)
-		mat <- expand.grid(x = xx, y = yy)
+		#require(fields)
+		#xx <- seq(min(sst$x), max(sst$x), by = interp)
+		#yy <- seq(min(sst$y), max(sst$y), by = interp)
+		#mat <- expand.grid(x = xx, y = yy)
+		stop("interpolation not supported")
 	}
 
     for (k in 1:nsegs) {
