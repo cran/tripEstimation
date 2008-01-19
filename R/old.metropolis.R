@@ -96,7 +96,7 @@ function(segments,day) {
 
 
 "mkNLPosterior" <-
-function(segments,day,light) {
+function(segments,day,light,calib) {
 
   segments <- unclass(factor(segments))
   
@@ -132,10 +132,10 @@ function(segments,day,light) {
     shape <- (70/30)^2
     rate <- (70/30^2)*10
     eps <- 1.0E-6
-    loglik <- sum(dnorm(light[[seg]], k+lgt, 7, log=T),
+    loglik <- sum(dnorm(light[[seg]], k+lgt, 7, log=TRUE),
                   ## Must not allow zero distances for gamma pdf.
-                  dgamma(max(eps, old.dist.gc(prv[1:2],ps[1:2])), shape, rate,log=T),
-                  dgamma(max(eps, old.dist.gc(ps[1:2],nxt[1:2])), shape, rate,log=T))
+                  dgamma(max(eps, old.dist.gc(prv[1:2],ps[1:2])), shape, rate,log=TRUE),
+                  dgamma(max(eps, old.dist.gc(ps[1:2],nxt[1:2])), shape, rate,log=TRUE))
 
     ## Return negative log posterior
     -(log(k.prior(seg, ps))+loglik)
@@ -209,7 +209,7 @@ function(nlpost,lookup,p0,cov0,start,end, iter=1000,step=100) {
   ## Precalculate the Cholesky decomposition the covariance of the
   ## proposal distribution for each block.
   U <- cov0
-  for(j in 1:n) U[,,j] <- chol(U[,,j],pivot = T)## I think you need pivot for 1.7.0 
+  for(j in 1:n) U[,,j] <- chol(U[,,j],pivot = TRUE)## I think you need pivot for 1.7.0 
 
   ## Record chain as a matrix
   chain.p <- matrix(0,iter,m*n)

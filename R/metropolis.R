@@ -55,8 +55,8 @@ function(model,
       
       ## Accept/reject first x
       if(mask.x1[1]) {
-        logp0 <- logp.posn0[1]+logp.behavioural(1,x0[1,1:2,drop=F],z0[1,,drop=F],x0[2,1:2,drop=F])
-        logp1 <- logp.posn1[1]+logp.behavioural(1,x1[1,1:2,drop=F],z0[1,,drop=F],x1[2,1:2,drop=F])
+        logp0 <- logp.posn0[1]+logp.behavioural(1,x0[1,1:2,drop=FALSE],z0[1,,drop=FALSE],x0[2,1:2,drop=FALSE])
+        logp1 <- logp.posn1[1]+logp.behavioural(1,x1[1,1:2,drop=FALSE],z0[1,,drop=FALSE],x1[2,1:2,drop=FALSE])
         if(logp1-logp0 > log(runif(1))) {
           x0[1,] <- x1[1,]
           logp.posn0[1] <- logp.posn1[1]
@@ -65,8 +65,8 @@ function(model,
       
       ## Accept/reject last x
       if(mask.x1[n]) {
-        logp0 <- logp.posn0[n]+logp.behavioural(n-1,x0[n-1,1:2,drop=F],z0[n-1,,drop=F],x0[n,1:2,drop=F])
-        logp1 <- logp.posn1[n]+logp.behavioural(n-1,x1[n-1,1:2,drop=F],z0[n-1,,drop=F],x1[n,1:2,drop=F])
+        logp0 <- logp.posn0[n]+logp.behavioural(n-1,x0[n-1,1:2,drop=FALSE],z0[n-1,,drop=FALSE],x0[n,1:2,drop=FALSE])
+        logp1 <- logp.posn1[n]+logp.behavioural(n-1,x1[n-1,1:2,drop=FALSE],z0[n-1,,drop=FALSE],x1[n,1:2,drop=FALSE])
         if(logp1-logp0 > log(runif(1))) {
           x0[n,] <- x1[n,]
           logp.posn0[n] <- logp.posn1[n]
@@ -78,11 +78,11 @@ function(model,
         is <- seq(rb,n-1,by=2)
         is <- is[mask.x1[is]]
         logp0 <- (logp.posn0[is]+
-                  logp.behavioural(is-1,x0[is-1,1:2,drop=F],z0[is-1,,drop=F],x0[is,1:2,drop=F])+
-                  logp.behavioural(is,x0[is,1:2,drop=F],z0[is,,drop=F],x0[is+1,1:2,drop=F]))
+                  logp.behavioural(is-1,x0[is-1,1:2,drop=FALSE],z0[is-1,,drop=FALSE],x0[is,1:2,drop=FALSE])+
+                  logp.behavioural(is,x0[is,1:2,drop=FALSE],z0[is,,drop=FALSE],x0[is+1,1:2,drop=FALSE]))
         logp1 <- (logp.posn1[is]+
-                  logp.behavioural(is-1,x1[is-1,1:2,drop=F],z0[is-1,,drop=F],x1[is,1:2,drop=F])+
-                  logp.behavioural(is,x1[is,1:2,drop=F],z0[is,,drop=F],x1[is+1,1:2,drop=F]))
+                  logp.behavioural(is-1,x1[is-1,1:2,drop=FALSE],z0[is-1,,drop=FALSE],x1[is,1:2,drop=FALSE])+
+                  logp.behavioural(is,x1[is,1:2,drop=FALSE],z0[is,,drop=FALSE],x1[is+1,1:2,drop=FALSE]))
         ## MH rule - compute indices of the accepted points.
         accept <- is[logp1-logp0 > log(runif(length(is)))]
         x0[accept,] <- x1[accept,]
@@ -95,8 +95,8 @@ function(model,
       ## and would cancel), and so we can update all the z in parallel.
       z1 <- proposal.z(z0)
       is <- (1:(n-1))[mask.z(z1)]
-      logp0 <- logp.behavioural(is,x0[is,1:2,drop=F],z0[is,],x0[is+1,1:2,drop=F])
-      logp1 <- logp.behavioural(is,x0[is,1:2,drop=F],z1[is,],x0[is+1,1:2,drop=F])
+      logp0 <- logp.behavioural(is,x0[is,1:2,drop=FALSE],z0[is,],x0[is+1,1:2,drop=FALSE])
+      logp1 <- logp.behavioural(is,x0[is,1:2,drop=FALSE],z1[is,],x0[is+1,1:2,drop=FALSE])
       ## MH rule - compute indices of the accepted points.
       accept <- is[(logp1-logp0 > log(runif(length(is))))]
       z0[accept,] <- z1[accept,]

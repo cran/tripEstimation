@@ -2,7 +2,7 @@
 function(day,X,
                            proposal.x,proposal.z,
                            mask.x,mask.z,
-                           fix.release=T,fix.recapture=T,
+                           fix.release=TRUE,fix.recapture=TRUE,
                            start.x,start.z,
                            posn.sigma=1,
                            speed.dist="gamma",speed.mean,speed.sd) {
@@ -33,7 +33,7 @@ function(x) {z <- x>1; x[z] <- 1; x}
   ## Positional contribution to the log posterior
   ##
   logp.position <- function(x) {
-    rowSums(dnorm(X,x,posn.sigma,log=T))
+    rowSums(dnorm(X,x,posn.sigma,log=TRUE))
   }
 
 
@@ -50,7 +50,7 @@ function(x) {z <- x>1; x[z] <- 1; x}
     logp.behavioural <- function(k,x1,z,x2) {
       ## Average speed from x1 to z to x2
       spd <- fast.pmax(dist(x1,z)+dist(z,x2))/dt[k]
-      dgamma(spd,alpha,beta,log=T)
+      dgamma(spd,alpha,beta,log=TRUE)
     }
   } else {
     log.sigma <- sqrt(log(1+speed.mean^2/speed.sd^2))
@@ -58,7 +58,7 @@ function(x) {z <- x>1; x[z] <- 1; x}
     logp.behavioural <- function(k,x1,z,x2) {
       ## Average speed from x1 to z to x2
       spd <- (dist(x1,z)+dist(z,x2))/dt[k]
-      dnorm(spd,log.mu,log.sigma,log=T)
+      dnorm(spd,log.mu,log.sigma,log=TRUE)
     }
   }
 

@@ -14,7 +14,7 @@
 \usage{
 mkElevationSeg(segments, day)
 
-mkNLPosterior(segments, day, light)
+mkNLPosterior(segments, day, light, calib)
 
 old.dist.gc(x1, x2 = NULL)
 
@@ -33,7 +33,7 @@ old.mkLookup(x, binArray = TRUE)
   %% mkNLPosterior
 
   \item{light}{vector of light data }
-  
+  \item{calib}{calibration function for light levels}
   %% mkElevationSeg
   
   %% old.dist.gc

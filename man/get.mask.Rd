@@ -1,8 +1,6 @@
 \name{get.mask}
 \alias{get.mask}
-\alias{mkDepthMask}
 \alias{mkSmall}
-\alias{mkTempMask}
 
 \title{Create, access and manipulate spatial masks}
 \description{
@@ -10,17 +8,13 @@
  \code{\link{image}} or as a series of masks stored as bits in the z-component
  as matrix or array object.     \code{get.mask} is used to extract a specific
  mask from the binary storage, and mkSmall can be used to quickly down-sample
- an existing mask or image. The two "make" functions are included as examples
- of creating such a mask from a local database. 
+ an existing mask or image. 
 }
 \usage{
 get.mask(masks, k)
 
 mkSmall(lst, thin = 10)
 
-mkDepthMask(depth.mins, depthdata = NULL)
-
-mkTempMask(times, temp.ranges, xlim = c(0.5, 359.5), ylim = c(-89.5, 89.5), sstdata = "reynolds", interp = NULL) 
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -34,26 +28,10 @@ mkTempMask(times, temp.ranges, xlim = c(0.5, 359.5), ylim = c(-89.5, 89.5), sstd
   \item{lst}{ an xyz-list structure with z containing either a matrix or array }
   \item{thin}{ integer factor to down-sample grid }
 
-%% mkDepthMask
-
-  \item{depth.mins}{ depth values to compare to database of topography }
-  \item{depthdata}{ xyz-list structure of topography }
-
-
-%% mkTempMask
-
-  \item{times}{ date-times at which temperatures are to be compared }
-  \item{temp.ranges}{ matrix of two columns - min/max of temperature for given period }
-  \item{xlim}{ x-range to query from temperature database }
-  \item{ylim}{ y-range to query from temperature database }
-  \item{sstdata}{ character describing sst database }
-  \item{interp}{ logical - should gappy data be interpolated?}
 
 }
 \details{
- \code{mkDepthMask} and \code{mkTempMask} are included to show operational examples
- used by our group.  Future publications will refer to this code, or to similar 
- functions. 
+
 }
 \value{
 

@@ -62,9 +62,7 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
     6378.137*acos(fast.pmin(r))
   }
 
-  # no transformation
-  transf <- function(x, ...) x
-
+ 
   ## we work in hours
   dt.scale <- 3600
 
@@ -82,8 +80,11 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
       rubbish <- capture.output(res <- project(x, proj.string, inv))
       res
     }
-  }
+    
+  } else  {# no transformation
+  transf <- function(x, inv = FALSE) x
 
+}
   ## Predicted light levels
   light.predict <- function(x,day) {
     ## Calculate elevations - note we must expand locations per
@@ -129,10 +130,10 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
 		## Compare observed (log) light level to the attenuated expected
 		## (log) light level to determine the contribution of each
 		## observation to log posterior.
-		logp <- dnorm(light,att,light.sigma,log=T)
+		logp <- dnorm(light,att,light.sigma,log=TRUE)
 		
 		## Sum over segments + prior
-		sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=T)
+		sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=TRUE)
 	  }
 	  
 	  
@@ -156,10 +157,10 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
 			## Compare observed (log) light level to the attenuated expected
 			## (log) light level to determine the contribution of each
 			## observation to log posterior.
-			logp <- dnorm(light,att,light.sigma,log=T)
+			logp <- dnorm(light,att,light.sigma,log=TRUE)
 			
 			## Sum over segments + prior
-			sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=T)
+			sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=TRUE)
 	  }
   	}
   	
@@ -180,10 +181,10 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
 	    ## Compare observed (log) light level to the attenuated expected
 	    ## (log) light level to determine the contribution of each
 	    ## observation to log posterior.
-	    logp <- dnorm(light,att,light.sigma,log=T)
+	    logp <- dnorm(light,att,light.sigma,log=TRUE)
 
 	    ## Sum over segments + prior
-	    sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=T)
+	    sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=TRUE)
 	  }
 }
   ##
@@ -207,7 +208,7 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
     logp.behavioural <- function(k,x1,z,x2) {
       ## Average speed from x1 to z to x2
       spd <- fast.pmax(dist(x1,z)+dist(z,x2))/dt[k]
-      dgamma(spd,alpha,beta,log=T)
+      dgamma(spd,alpha,beta,log=TRUE)
     }
   }
   else  
@@ -217,7 +218,7 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
     logp.behavioural <- function(k,x1,z,x2) {
       ## Average speed from x1 to z to x2
       spd <- (dist(x1,z)+dist(z,x2))/dt[k]
-      dnorm(spd,log.mu,log.sigma,log=T)
+      dnorm(spd,log.mu,log.sigma,log=TRUE)
     }
   }
 
