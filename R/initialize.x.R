@@ -73,7 +73,7 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
         	    , i]) & (logp[, , i] * logp[, , i + 1]) == 1) * mask[,,i]
         	 
         	#this <- this * mask[,,i]
-        	xx[i, 1:2] <- apply(xy[as.logical(logp.quantile[,,i] ), ], 2, mean, na.rm = T)
+        	xx[i, 1:2] <- apply(xy[as.logical(logp.quantile[,,i] ), ], 2, mean, na.rm = TRUE)
     	}
     
 #browser()

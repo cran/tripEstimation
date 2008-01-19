@@ -4,8 +4,6 @@
 \alias{bmvnorm.proposal}
 \title{Manage proposal functions tune variance for metropolis sampler}
 \description{Generate new proposals for the x from the current. Generates all x at once.}
-
-}
 \usage{
 norm.proposal(m, n, sigma)
 
