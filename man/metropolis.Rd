@@ -52,10 +52,9 @@ A MCM \emph{Chain} stored as a list containing
   \item{last.x }{The last accepted X-sample, stored as a \code{c(m, n)} matrix}
   \item{last.z }{The last accepted Z-sample, stored as a \code{c(m, 2)} matrix}
 }
-\references{[Ekstrom, Hill, Gilks, etc.]}
-\author{ Michael D. Sumner }
-\note{ 
-}
+\references{Sumner, Wotherspoon and Hindell (2009). Bayesian Estimation of Animal Movement from Archival and Satellite Tags, PLoS ONE. \url{http://dx.plos.org/10.1371/journal.pone.0007324}}
+\author{ Michael D. Sumner and Simon Wotherspoon}
+
 
 \seealso{\code{\link{solar.model}}, \code{\link{satellite.model}} }
 \examples{

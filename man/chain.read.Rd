@@ -1,5 +1,7 @@
 \name{chain.read}
 \alias{chain.read}
+\alias{chain.dim}
+\alias{chain.write}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~~function to do ... ~~ }
 \description{
@@ -7,10 +9,15 @@
 }
 \usage{
 chain.read(filename)
+chain.dim(filename)
+chain.write(filename, A, append = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{filename}{ ~~Describe \code{filename} here~~ }
+  
+  \item{A}{ ~~Describe \code{A} here~~ }
+  \item{append}{ ~~Describe \code{append} here~~ }
 }
 \details{}
 \value{

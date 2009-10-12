@@ -29,7 +29,7 @@ Very little error checking is done.
 \seealso{ \code{\link{get.mask}} and related examples for creating and using 
 masks. 
 
-See \code{\link[pkg]{overlay}}  for more general capabilities for overlays. }
+See \code{\link[sp]{overlay}}  for more general capabilities for overlays. }
 \examples{
 }
 \keyword{manip }% at least one, from doc/KEYWORDS

@@ -13,7 +13,7 @@ function(model, x1,x2,xrest=NULL) {
 
   print(paste("i in", length(x1)))
 
-  
+
   ## Loop over grid
   for(i in 1:length(x1)) {
     print(i)
@@ -35,9 +35,9 @@ function(model, x1,x2,xrest=NULL) {
   x
 }
 
-"position.logp" <- 
+"position.logp" <-
 function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
-	start = NULL, end = NULL) 
+	start = NULL, end = NULL, prob = 0.8)
 {
     n <- model$n
     logp.position <- model$logp.position
@@ -54,28 +54,28 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
         }
     }
     res <- list(x = x1, y = x2, logp = logp, mask = mask)
-    
-    
+
+
 
     if (initialize.x) {
 	#logp.init <- function(d.model, logp, ) {
-	nq = 6
+	#nq = 6
 	xy <- expand.grid(x = x1, y = x2)
-	logp.quantile <- logp > 0 
-    	for (i in 2:(n - 1)) logp.quantile[, , i] <- 
-		logp[, , i] > quantile(logp[, , i], seq(0, 1, length = nq), na.rm = TRUE)[nq - 1]
+	logp.quantile <- logp > 0
+    	for (i in 2:(n - 1)) logp.quantile[, , i] <-
+		logp[, , i] > quantile(logp[, , i], prob, na.rm = TRUE)
 	logp <- logp.quantile
     	xx <- matrix(0, nrow = n, ncol = 3)
     	for (i in 2:(n - 1)) {
-    	
-    	
-        	logp.quantile[,,i] <- ((logp[, , i - 1] * logp[, 
+
+
+        	logp.quantile[,,i] <- ((logp[, , i - 1] * logp[,
         	    , i]) & (logp[, , i] * logp[, , i + 1]) == 1) * mask[,,i]
-        	 
+
         	#this <- this * mask[,,i]
         	xx[i, 1:2] <- apply(xy[as.logical(logp.quantile[,,i] ), ], 2, mean, na.rm = TRUE)
     	}
-    
+
 #browser()
 	res$logp.quantile <- logp.quantile
 	X <- xx
@@ -89,27 +89,28 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
 	}
 	class(res) <- c("diag", class(res))
 	res
-    }	
+    }
 
 
- 
+
+
 
  "light.quantile" <-
- function(model,chain,day,seg,prob=c(0.025,0.5,0.975)) {
+ function(model,chain,day,seg,probl=c(0.025,0.5,0.975)) {
    n <- length(day)
    ## Parameters for this segment
    xs <- t(chain$x[seg,,])
    ## Matrix of quantiles
-   qs <- matrix(0,n,length(prob))
+   qs <- matrix(0,n,length(probl))
    for(i in 1:n) {
      ## Predictions for this time over all xs
      lgt <- model$light.predict(xs,day[i])
-     qs[i,] <- quantile(lgt,prob=prob)
+     qs[i,] <- quantile(lgt,prob=probl)
    }
    qs
  }
 
-"show.segment" <- function (model, chain, segment, day, light, k, n = 50, ...) 
+"show.segment" <- function (model, chain, segment, day, light, k, n = 50, ...)
 {
     segment <- factor(segment)
     day.seg <- day[segment == k]
@@ -118,5 +119,5 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
     ds <- seq(min(day.seg), max(day.seg), length = n)
     qs <- light.quantile(model, chain, ds, k)
     matlines(ds, qs, lty = 1, col = "blue", lwd = 2)
-   
+
 }

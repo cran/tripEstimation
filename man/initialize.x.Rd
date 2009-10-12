@@ -11,11 +11,12 @@
   diagnostic images for each twilight and uses those to initialize position. 
 }
 \usage{
-position.logp(model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE, start = NULL, end = NULL)
+position.logp(model, x1, x2, xrest = NULL, subset = 1:model$n,
+initialize.x = TRUE, start = NULL, end = NULL, prob = 0.8)
 
 initialize.x(model, x1, x2, xrest = NULL)
 
-light.quantile(model, chain, day, seg, prob = c(0.025, 0.5, 0.975))
+light.quantile(model, chain, day, seg, probl = c(0.025, 0.5, 0.975))
 
 show.segment(model, chain, segment, day, light, k, n = 50, ...)
 }
@@ -28,14 +29,15 @@ show.segment(model, chain, segment, day, light, k, n = 50, ...)
   \item{xrest}{ value for remaining parameters - default is light attenuation }
   \item{subset}{ evaluate subset of segments - default uses all }
   \item{initialize.x}{logical - create initial points for x? }
- 
+  \item{prob}{probability - threshold to apply to overlapping quantiles,
+  defaults to 0.8}
 %% initialize.x
 
   %% light.quantile
   \item{chain}{ chain object from estimation }
   \item{day}{ POSIXct vector of date-times }
   \item{seg}{ desired segment }
-  \item{prob}{ probability level for quantile }
+  \item{probl}{ probability level for quantile }
   \item{start}{known position of release  }
   \item{end}{known position of recapture }
   %% show.segment

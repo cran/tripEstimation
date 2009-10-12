@@ -1,45 +1,53 @@
 \name{as.image.pimg}
 \alias{as.image.pimg}
+\alias{as.matrix.pimg}
+\alias{combine}
+\alias{coords.pimg}
+\alias{get.pimgs}
+\alias{unzipper}
+\alias{as.local.pimg}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{Convert to image list}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+Converts Probability image (pimage) component to standard R xyz list
+image. 
 }
 \usage{
 as.image.pimg(pimg)
+combine(pimgs, subset = 1:length(pimgs))
+coords.pimg(pimg)
+get.pimgs(rootdir = NULL, f2load = "p_ImageList.Rdata")
+unzipper(px)
+as.local.pimg(pimg)
+\method{as.matrix}{pimg}(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pimg}{ ~~Describe \code{pimg} here~~ }
+  \item{pimg}{Probability image component}
+    \item{pimgs}{ \code{pimgs}  }
+    \item{subset}{ \code{subset} }
+      \item{rootdir}{ \code{rootdir}  }
+      \item{f2load}{ \code{f2load}  }
+
+      \item{px}{ \code{px} }
+
+      \item{x}{\code{x}}
+
+      \item{\dots}{\code{\dots}}
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
-}
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
 
- ~Make other sections like Warning with \section{Warning }{....} ~
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+
+\author{Michael D. Sumner}
+\note{
+}
+\seealso{}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function(pimg) {
-  img <- coords.pimg(pimg)
-  img$z <- as.matrix.pimg(pimg)
-  img
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

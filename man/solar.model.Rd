@@ -48,10 +48,10 @@ Fixed recapture and release points are treated specially for ease of sampling, b
 the sampling is written to be general for any fixed locations. 
 
 Behavioural models may be specified either as lognormal or log-gamma. By editing the 
-function create as \code{logp.behavioural} this may be specified differently. 
+function created as \code{logp.behavioural} this may be specified differently. 
 
 Transformation of coordinates is supported via a simple function that only performs coordinate
-transforms if \code{proj.string} is not longlat. See \pkg{rgdal} for the underlying
+transforms if \code{proj.string} is not longlat. See \code{\link[rgdal]{project}} for the underlying
 functionality. 
 }
 \value{

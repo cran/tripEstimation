@@ -20,19 +20,22 @@ simply to make the object construction simple.
   \item{start.x}{ ~~Describe \code{start.x} here~~ }
   \item{start.z}{ ~~Describe \code{start.z} here~~ }
   \item{posn.sigma}{ variance for locations }
-  \item{speed.dist}{ distribution to use for behavioural constraint }
-  \item{speed.mean}{ mean to use for behavioural distribution }
-  \item{speed.sd}{ variance for behavioural distribution}
+  \item{behav.dist}{ distribution to use for behavioural constraint }
+  \item{behav.mean}{ mean to use for behavioural distribution }
+  \item{behav.sd}{ variance for behavioural distribution}
+  \item{proj.string}{ PROJ.4 string for coordinate system used }
 }
 \details{
 \code{posn.sigma} may be a single value for all estimates, or a vector of values for each position
-estimate. 
-}
-\value{
-}
-\references{[Argos manual]}
-\author{ Michael D. Sumner }
-\note{
+estimate.
+
+Transformation of coordinates is supported via a simple function that
+only performs coordinate transforms if \code{proj.string} is not
+longlat. See \code{\link[rgdal]{project}} for the underlying functionality.
+} 
+
+\value{ See \code{solar.model} for some related detail.  }
+\references{[Argos manual]} \author{ Michael D. Sumner } \note{
 
 This function is not completely consistent with its solar counterpart \code{solar.model}. 
 These are working functions that are in constant development, but they are structurally 
