@@ -1,9 +1,8 @@
 "solar.model" <-
 function(segments,day,light,
-         proposal.x,proposal.z,
+	proposal.x, proposal.z,
          mask.x,mask.z,
          fix.release=TRUE,fix.recapture=TRUE,
-                                        #start.x = NULL, start.z = NULL,
          calibration,
          light.sigma=7,k.sigma=10,
          behav = "speed",
@@ -11,7 +10,6 @@ function(segments,day,light,
          proj.string = "+proj=longlat",
          ekstrom = c(-5, 3, light.sigma),
          ekstrom.limit = "light"
-
          ) {
 
 ## add fakes here
@@ -28,22 +26,16 @@ if (fix.recapture) {
 }
 
 
-## faster pmin/pmax 
-## used by logp.behavioural
-fast.pmax <- 
-function(x) {z <- x<1e-06; x[z] <- 1e-06; x}
-## used by dist
-fast.pmin <- 
-function(x) {z <- x>1; x[z] <- 1; x}
+
 
 
 ## check the data
 nn <- c(length(segments), length(day), length(light))
-if (any(diff(nn)) != 0) stop("data of unequal lengths")
-if (nn[1] < 100) stop("data are surely too few")
+if (any(diff(nn) != 0)) stop("data of unequal lengths")
+if (nn[1] < 100) stop(paste("only", nn[1], "light levels!  Check the input data. "))
 test.c <- calibration(-10:10)
-if (length(test.c) < 10) stop("less tha 10 values from calibration, probably not enough")
-if (any(c(light.sigma, k.sigma, behav.mean, behav.sd)) <= 0 ) stop("variance/mean of zero or less")
+if (length(test.c) < 10) stop("less than 10 values from calibration, probably not enough")
+if (any(c(light.sigma, k.sigma, behav.mean, behav.sd) <= 0 )) stop("variance/mean of zero or less")
 
 ## do a check on the proposals
 
@@ -54,17 +46,17 @@ if (dmx[1] != length(unique(segments))) stop("number of segments do not match X-
 if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than Z-proposals")
 
   ## assume long/lat
-  
+
   ## (Great Circle) Distance in kilometres
   dist <- function(a,b) {
     r <- cos(pi/180*a[,2])*cos(pi/180*b[,2])*
       cos(pi/180*(b[,1]-a[,1]))+sin(pi/180*a[,2])*sin(pi/180*b[,2])
-    6378.137*acos(fast.pmin(r))
+    6378.137*acos(pmin.int(r, 1))
   }
 
- 
-  ## we work in hours
-  dt.scale <- 3600
+  # no transformation
+  transf <- function(x, inv = FALSE) x
+
 
   if (!any(grep("longlat", proj.string))) {
     require(rgdal)
@@ -80,11 +72,13 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
       rubbish <- capture.output(res <- project(x, proj.string, inv))
       res
     }
-    
-  } else  {# no transformation
-  transf <- function(x, inv = FALSE) x
+  }
 
-}
+
+
+  ## we work in hours
+  dt.scale <- 3600
+
   ## Predicted light levels
   light.predict <- function(x,day) {
     ## Calculate elevations - note we must expand locations per
@@ -104,51 +98,54 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
   ## The vector of indices is maps segments to observations.
   segments <- factor(segments)
   is <- unclass(segments)
-  
+
   ## Precompute solar constants
   sun <- solar(day)
 
   light.sigma <- rep(light.sigma, length(segments))
   if (ekstrom[3] != light.sigma[1]) {
-  	
+
   	if (ekstrom.limit == "elevation") {
-  		## no need to lookup 
-  		
-  		
+  		## no need to lookup
+
+
   		logp.position <- function(x) {
+
+  		x[,1:2] <- transf(x[,1:2], inv = TRUE)
 		## Calculate elevations - note we must expand locations per
-						    
+
 		## segment to locations per observation
-			    
+
 		elev <- elevation(x[is,1],x[is,2],sun)
 		ok <- elev >= ekstrom[1] & elev <= ekstrom[2]
 		light.sigma[!ok] <- ekstrom[3]
 		## Expected (log scale) light level given tag calibration and the
 		## attenuation offset
 		att <- calibration(elev)+x[is,3]
-		
+
 		## Compare observed (log) light level to the attenuated expected
 		## (log) light level to determine the contribution of each
 		## observation to log posterior.
-		logp <- dnorm(light,att,light.sigma,log=TRUE)
-		
+		logp <- dnorm(light, att, light.sigma, log=TRUE)
+
 		## Sum over segments + prior
-		sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=TRUE)
+		sapply(split(logp,segments), sum) + dnorm(x[,3], 0, k.sigma, log = TRUE)
 	  }
-	  
-	  
+
+
   	}
   	if (ekstrom.limit == "light") {
   		ekstrom[1:2] <- range(calibration(ekstrom[1:2]))
-  	
-  	
+
+
   		  logp.position <- function(x) {
+  		  	x[,1:2] <- transf(x[,1:2], inv = TRUE)
 			## Calculate elevations - note we must expand locations per
-				    
+
 			## segment to locations per observation
-				    
+
 			elev <- elevation(x[is,1],x[is,2],sun)
-			
+
 			## Expected (log scale) light level given tag calibration and the
 			## attenuation offset
 			att <- calibration(elev)+x[is,3]
@@ -157,19 +154,18 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
 			## Compare observed (log) light level to the attenuated expected
 			## (log) light level to determine the contribution of each
 			## observation to log posterior.
-			logp <- dnorm(light,att,light.sigma,log=TRUE)
-			
+			logp <- dnorm(light, att, light.sigma, log = TRUE)
+
 			## Sum over segments + prior
-			sapply(split(logp,segments),sum)+dnorm(x[,3],0,k.sigma,log=TRUE)
-	  }
-  	}
-  	
-  	
- 
-  
+			sapply(split(logp,segments),sum) + dnorm(x[,3], 0, k.sigma, log=TRUE) } }
+
+
+
+
   } else {
 	  logp.position <- function(x) {
 
+		x[,1:2] <- transf(x[,1:2], inv = TRUE)
 	    ## Calculate elevations - note we must expand locations per
 	    ## segment to locations per observation
 	    elev <- elevation(x[is,1],x[is,2],sun)
@@ -194,7 +190,7 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
   ## Times between observations
   if (behav == "distance")
     dt <- rep(1, nlevels(segments))
-  
+
   if (behav == "speed") {
     dt <- diff(tapply(as.numeric(day),segments,mean))/dt.scale
     if (any(dt <= 0)) stop("There is a problem with segments, check ", which(dt <= 0))
@@ -207,11 +203,11 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
     beta <- behav.mean/behav.sd^2
     logp.behavioural <- function(k,x1,z,x2) {
       ## Average speed from x1 to z to x2
-      spd <- fast.pmax(dist(x1,z)+dist(z,x2))/dt[k]
+      spd <- pmax.int(dist(x1,z)+dist(z,x2), 1e-06)/dt[k]
       dgamma(spd,alpha,beta,log=TRUE)
     }
   }
-  else  
+  else
     {
     log.sigma <- sqrt(log(1+behav.mean^2/behav.sd^2))
     log.mu <- log(behav.mean)-log.sigma^2/2
@@ -230,8 +226,8 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
   fixed.x[1] <- fix.release
   fixed.x[n] <- fix.recapture
 
-  
-  
+
+
   ## Return a list with all model components
   list(## Number of locations
        n = n,
@@ -245,12 +241,13 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
        mask.z=mask.z,
        ## Light levels prediction
        light.predict=light.predict,
-       ## Positional contribution to the log posterior 
+       ## Positional contribution to the log posterior
        logp.position=logp.position,
-       ## Behavioural contribution to the log posterior 
+       ## Behavioural contribution to the log posterior
        logp.behavioural=logp.behavioural,
        ## Locations to be held fixed
-       fixed.x=fixed.x
+       fixed.x=fixed.x,
+       proposal.x = proposal.x, proposal.z = proposal.z
        ## Suggested starting points
        #start.x=start.x,
        #start.z=start.z)

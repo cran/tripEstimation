@@ -84,11 +84,10 @@ POLAR(X, Y, Z)
   edition = {2  (translated from German by Storm Dunlop)},
 }}}
 \author{Michael D. Sumner}
-\note{ 
+\note{
+  Thanks to Nick.Ellis@csiro.au for pointing out a mistake pre-0.0-27
 }
-\section{Warning }{I don't get perfect matchup with the NOAA routines for solar elevation.
-This may be the limitations
-       of the (mini-versions of the) algorithms, as they are good at near-horizon (for rising and setting). 
+\section{Warning }{
        Some of this could be faster (particularly the use of LMST in "astro" is not precalculated)
 
 }

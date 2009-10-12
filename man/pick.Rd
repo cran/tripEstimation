@@ -40,9 +40,9 @@ picksegs(twind, n)
 \note{ It seems best to choose more of the light data than less, using the 
 \code{ekstrom} keyword to \code{\link{solar.model}} we can limit the solar 
 elevation used. 
-
- \section{Warning }{Segments are expected to be chosen as non-overlapping. } 
 }
+ \section{Warning }{Segments are expected to be chosen as non-overlapping. } 
+
 \seealso{  }
 \examples{
 \dontrun{
