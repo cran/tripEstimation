@@ -1,7 +1,8 @@
 \name{get.mask}
 \alias{get.mask}
 \alias{mkSmall}
-
+\alias{set.mask<-}
+\alias{mkMaskObject}
 \title{Create, access and manipulate spatial masks}
 \description{
  Spatial masks are stored using the xyz-list structure used by 
@@ -15,12 +16,15 @@ get.mask(masks, k)
 
 mkSmall(lst, thin = 10)
 
+set.mask(object, segment) <-  value
+
+mkMaskObject(xs, ys, nsegs)
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 
-%% get.mask
+  %  % get.mask
   \item{masks}{ A list object with components x, y, and z containing spatial masks }
   \item{k}{ specifies the k-th mask}
 
@@ -28,18 +32,28 @@ mkSmall(lst, thin = 10)
   \item{lst}{ an xyz-list structure with z containing either a matrix or array }
   \item{thin}{ integer factor to down-sample grid }
 
+  % %% set.mask
+  \item{object}{ array Mask object }
+  \item{segment}{ segment number to be modified in the mask }
+  \item{value}{ individual mask to be set }
 
+  %%mkMaskObject
+  %\item{xs){ x coordinates of mask cells }
+  %\item{ys}{ y coordinates of mask cells }
+  %\item{nsegs}{ number of segments to be represented }
+  \item{xs}{
+    x coordinates of mask cells
 }
-\details{
+  \item{ys}{
+    y coordinates of mask cells
+}
+  \item{nsegs}{
+    number of segments to be represented
+}
+}
 
-}
-\value{
-
-}
-\references{  }
 \author{ Michael D. Sumner}
-\note{
-}
+
 \seealso{ \code{\link{mkLookup}} for the use of these masks to query individual
 locations and locations measured over time.                      
 See \code{\link{bits}} for the underlying mechanism to set and get mask bits.  

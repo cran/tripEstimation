@@ -14,14 +14,12 @@ mkLookup(x, by.segment = TRUE)
   \item{x}{ an xyz-list with matrix or array of masks }
   \item{by.segment}{logical - is the mask to be queried separately for each time step? }
 }
-\details{
-  
-}
+
 \value{
 A function, with one argument - a matrix of points - that returns a logical
  vector indicating the overlay of each point against the masks. 
 }
-\references{ }
+
 \author{ Michael D. Sumner}
 \note{ 
 Very little error checking is done.
@@ -30,7 +28,6 @@ Very little error checking is done.
 masks. 
 
 See \code{\link[sp]{overlay}}  for more general capabilities for overlays. }
-\examples{
-}
+
 \keyword{manip }% at least one, from doc/KEYWORDS
 

@@ -40,13 +40,9 @@ points.
   \item{set }{set variance values}
   \item{tune}{tune the variance for proposal functions}
 }
-\references{ }
-\author{ Simon Wotherspoon }
-\note{ The mv and bmv versions are included for archival purposes - they are not tested. 
-}
-\seealso{ }
-\examples{
 
-}
+\author{ Simon Wotherspoon }
+
+
 \keyword{manip}% at least one, from doc/KEYWORDS
 

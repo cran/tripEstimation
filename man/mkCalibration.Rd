@@ -22,14 +22,9 @@ mkCalibration(x, known = NULL, elim = c(-36, 12), choose = TRUE)
 \value{
  A function, defined by \code{approxfun}. 
 }
-\references{ ~ }
+
 \author{ Michael D. Sumner}
-\note{ 
 
-
-}
 \seealso{\code{\link{approxfun}} }
-\examples{
-}
 \keyword{ manip }
 \keyword{ dplot }

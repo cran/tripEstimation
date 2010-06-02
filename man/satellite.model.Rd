@@ -17,8 +17,8 @@ simply to make the object construction simple.
     \item{mask.z}{ lookup function for Z's against masks }
     \item{fix.release}{ logical - is the release point known? }
   \item{fix.recapture}{ logical - is the recapture point known? }
-  \item{start.x}{ ~~Describe \code{start.x} here~~ }
-  \item{start.z}{ ~~Describe \code{start.z} here~~ }
+  \item{start.x}{ starting positions for the primary locations, see \code{\link{position.logp}} }
+  \item{start.z}{ starting positions for the intermediat locations. }
   \item{posn.sigma}{ variance for locations }
   \item{behav.dist}{ distribution to use for behavioural constraint }
   \item{behav.mean}{ mean to use for behavioural distribution }
@@ -35,13 +35,18 @@ longlat. See \code{\link[rgdal]{project}} for the underlying functionality.
 } 
 
 \value{ See \code{solar.model} for some related detail.  }
-\references{[Argos manual]} \author{ Michael D. Sumner } \note{
 
-This function is not completely consistent with its solar counterpart \code{solar.model}. 
-These are working functions that are in constant development, but they are structurally 
-simple and may be easily edited as required. 
-}
-\seealso{ See also \code{\link{solar.model}} for the counterpart model for solar problems}
-\examples{
-}
+\references{Sumner, Wotherspoon and Hindell (2009). Bayesian Estimation of Animal Movement from Archival and Satellite Tags, PLoS ONE. \url{http://dx.plos.org/10.1371/journal.pone.0007324}}
+\author{ Michael D. Sumner }
+
+\note{
+
+
+These are simple wrapper functions to create the desired model for use
+in \code{\link{metropolis}}. These models are structurally very simple
+and may be easily edited as required.  }
+
+\seealso{ See also \code{\link{solar.model}} for the counterpart model
+for estimating positions for light tags. }
+
 \keyword{ manip }

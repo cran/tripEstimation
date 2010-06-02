@@ -1,6 +1,8 @@
 \name{metropolis}
 \alias{metropolis}
 \alias{metropolis0}
+
+
 \title{ Metropolis-Hastings sampler for location estimation for archival and satellite tag }
 \description{
   These functions provide a direct implementation of the Metropolis-Hastings algorithm, for
@@ -16,16 +18,20 @@
 \usage{
 metropolis(model, iters = 1000, thin = 10, start.x = NULL, start.z = NULL)
 
-metropolis0(model, iters = 1000, thin = 10, start.x = NULL, start.z = NULL)
+metropolis0(model, iters = 1000, thin = 10, start.x = NULL, start.z =
+NULL)
+
+
 }
 
 \arguments{
 %% metropolis
-  \item{model}{ ~~Describe \code{model} here~~ }
-  \item{iters}{ ~~Describe \code{iters} here~~ }
-  \item{thin}{ ~~Describe \code{thin} here~~ }
-  \item{start.x}{ ~~Describe \code{start.x} here~~ }
-  \item{start.z}{ ~~Describe \code{start.z} here~~ }
+  \item{model}{ model for estimation, such as one created by \code{\link{solar.model}} }
+  \item{iters}{ number of iterations to run}
+  \item{thin}{ number of iterations to thin by }
+  \item{start.x}{ starting points for the primary locations  }
+  \item{start.z}{ starting points for the intermediate locations
+    (midpoints between the \code{start.x} points is a good first guess }
 
 
 }
@@ -57,7 +63,5 @@ A MCM \emph{Chain} stored as a list containing
 
 
 \seealso{\code{\link{solar.model}}, \code{\link{satellite.model}} }
-\examples{
 
-}
 \keyword{manip }
