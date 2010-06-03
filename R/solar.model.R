@@ -247,7 +247,8 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
        logp.behavioural=logp.behavioural,
        ## Locations to be held fixed
        fixed.x=fixed.x,
-       proposal.x = proposal.x, proposal.z = proposal.z
+       proposal.x = proposal.x, proposal.z = proposal.z,
+       tm = tapply(day, segments, mean)
        ## Suggested starting points
        #start.x=start.x,
        #start.z=start.z)

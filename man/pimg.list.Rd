@@ -27,14 +27,7 @@ pimg.list(times, xlim, ylim, img.dim, Z = TRUE)
   \item{img.dim}{  \code{img.dim}  }
   \item{Z}{  \code{Z}  }
 }
-\details{
- 
-}
-\value{
- 
-}
-\examples{
-}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{manip}

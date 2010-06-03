@@ -31,7 +31,7 @@ bits(object, bit) <-  value
  A numeric object with the given bit set, or a logical value designating the
  status of the given bit. 
 }
-\references{}
+
 \author{ Michael D. Sumner }
 \note{ The 32nd bit is harder to access, so we ignore it. 
 }

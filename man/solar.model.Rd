@@ -102,12 +102,7 @@ functionality.
   model specification.
 
 }
-\references{}
-\author{ Simon Wotherspoon and Michael Sumner}
-\note{ 
-}
-\seealso{  }
-\examples{
 
-}
+\author{ Simon Wotherspoon and Michael Sumner}
+
 \keyword{models}

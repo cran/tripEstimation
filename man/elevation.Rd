@@ -1,8 +1,8 @@
 \name{elevation}
 \alias{elevation}
-\title{ ~~ data name/kind ... ~~}
+\title{ Calculate elevation of astronomical objects}
 \description{
-  ~~ A concise (1-5 lines) description of the dataset. ~~
+  Function to calculate elevation. 
 }
 \usage{
 elevation(lon, lat, sun)
@@ -10,22 +10,13 @@ elevation(lon, lat, sun)
 \arguments{
 	\item{lon}{ vector of longitude values}
 	\item{lat}{ vector of latitude values }
-	\item{sun}{ solar calculations as returned by \code{\link{solar}}}
-}
-\details{
-
-}
-\value{
-
+	\item{sun}{ pre-stored values  as returned by
+	  \code{\link{solar}} or \code{\link{lunar}}}
 }
 
 \references{
-[NOAA webpage]
+\url{http://www.srrb.noaa.gov/highlights/sunrise/azel.html}
 }
 \author{Michael D. Sumner}
-\note{
 
-}
-\examples{
-}
 \keyword{manip}

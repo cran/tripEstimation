@@ -35,10 +35,68 @@ function(model, x1,x2,xrest=NULL) {
   x
 }
 
+## "position.logp" <-
+## function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
+## 	start = NULL, end = NULL, prob = 0.8)
+## {
+##     n <- model$n
+##     logp.position <- model$logp.position
+##     mask.x <- model$mask.x
+##     logp <- array(0, c(length(x1), length(x2), length(subset)))
+##     mask <- array(0, c(length(x1), length(x2), length(subset)))
+##     print(paste("i in ", length(x1)))
+##     for (i in 1:length(x1)) {
+##         print(i)
+##         for (j in 1:length(x2)) {
+##             x <- cbind(rep(x1[i], n), rep(x2[j], n), xrest)
+##             logp[i, j, ] <- logp.position(x)[subset]
+##             mask[i, j, ] <- mask.x(x)[subset]
+##         }
+##     }
+##     res <- list(x = x1, y = x2, logp = logp, mask = mask)
+
+
+
+##     if (initialize.x) {
+## 	#logp.init <- function(d.model, logp, ) {
+## 	#nq = 6
+## 	xy <- expand.grid(x = x1, y = x2)
+## 	logp.quantile <- logp > 0
+##     	for (i in 2:(n - 1)) logp.quantile[, , i] <-
+## 		logp[, , i] > quantile(logp[, , i], prob, na.rm = TRUE)
+## 	logp <- logp.quantile
+##     	xx <- matrix(0, nrow = n, ncol = 3)
+##     	for (i in 2:(n - 1)) {
+
+
+##         	logp.quantile[,,i] <- ((logp[, , i - 1] * logp[,
+##         	    , i]) & (logp[, , i] * logp[, , i + 1]) == 1) * mask[,,i]
+
+##         	#this <- this * mask[,,i]
+##         	xx[i, 1:2] <- apply(xy[as.logical(logp.quantile[,,i] ), ], 2, mean, na.rm = TRUE)
+##     	}
+
+## #browser()
+## 	res$logp.quantile <- logp.quantile
+## 	X <- xx
+## 	if (!is.null(start)) X[1,1:2] <- start
+## 	if (!is.null(end)) X[nrow(X), 1:2] <- end
+
+## 	require(zoo)
+## 	res$naX <- X
+## 	X <- as.matrix(na.approx(X, na.rm = FALSE))
+## 	res[["X"]] <- X
+## 	}
+## 	class(res) <- c("diag", class(res))
+## 	res
+##     }
+
+
 "position.logp" <-
 function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
-	start = NULL, end = NULL, prob = 0.8)
+    start = NULL, end = NULL, prob = 0.8, winoffset = 5)
 {
+
     n <- model$n
     logp.position <- model$logp.position
     mask.x <- model$mask.x
@@ -46,7 +104,7 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
     mask <- array(0, c(length(x1), length(x2), length(subset)))
     print(paste("i in ", length(x1)))
     for (i in 1:length(x1)) {
-        print(i)
+        cat(i, "\n")
         for (j in 1:length(x2)) {
             x <- cbind(rep(x1[i], n), rep(x2[j], n), xrest)
             logp[i, j, ] <- logp.position(x)[subset]
@@ -54,43 +112,43 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
         }
     }
     res <- list(x = x1, y = x2, logp = logp, mask = mask)
-
-
-
     if (initialize.x) {
-	#logp.init <- function(d.model, logp, ) {
-	#nq = 6
-	xy <- expand.grid(x = x1, y = x2)
-	logp.quantile <- logp > 0
-    	for (i in 2:(n - 1)) logp.quantile[, , i] <-
-		logp[, , i] > quantile(logp[, , i], prob, na.rm = TRUE)
-	logp <- logp.quantile
-    	xx <- matrix(0, nrow = n, ncol = 3)
-    	for (i in 2:(n - 1)) {
-
-
-        	logp.quantile[,,i] <- ((logp[, , i - 1] * logp[,
-        	    , i]) & (logp[, , i] * logp[, , i + 1]) == 1) * mask[,,i]
-
-        	#this <- this * mask[,,i]
-        	xx[i, 1:2] <- apply(xy[as.logical(logp.quantile[,,i] ), ], 2, mean, na.rm = TRUE)
-    	}
-
-#browser()
-	res$logp.quantile <- logp.quantile
-	X <- xx
-	if (!is.null(start)) X[1,1:2] <- start
-	if (!is.null(start)) X[nrow(X), 1:2] <- end
-
-	require(zoo)
-	res$naX <- X
-	X <- as.matrix(na.approx(X, na.rm = FALSE))
-	res[["X"]] <- X
-	}
-	class(res) <- c("diag", class(res))
-	res
+        xy <- expand.grid(x = x1, y = x2)
+        logp.quantile <- logp > 0
+        for (i in 2:(n - 1)) {
+            logp.quantile[, , i] <- logp[, ,i] > quantile(logp[, , i], prob, na.rm = TRUE)
+        }
+        logp <- logp.quantile
+        xx <- cbind(matrix(as.numeric(NA), nrow = n, ncol = 2), xrest)
+        for (i in winoffset:(n - winoffset)) {
+            mm <- mask[,,i] * 0
+            for (ik in (i-winoffset+1):(i+winoffset -1)) {
+                mm <- mm + logp[,,ik]
+            }
+            #logp.quantile[,,i] <- (!mm == 0) & mask[,,i]
+            xy1 <- xy[which.max(as.vector(mm) * mask[,,i]), ]
+            if (nrow(xy1) > 0) {
+                xx[i, 1:2] <- as.matrix(xy1)[ceiling(nrow(xy1)/2), ,drop = TRUE]
+            } else {
+                xx[i,1:2] <- rep(NA, 2)
+            }
+        }
+        res$logp.quantile <- logp.quantile
+        X <- xx
+        if (!is.null(start))    {
+            X[1:(winoffset-1), 1:2] <- matrix(start, nrow = winoffset - 1, ncol = 2, byrow = TRUE)
+        }
+        if (!is.null(end))  {
+            X[(nrow(X) - winoffset+2):nrow(X), 1:2] <- matrix(end, nrow = winoffset - 1, ncol = 2, byrow = TRUE)
+        }
+        require(zoo)
+        res$naX <- X
+        X <- as.matrix(na.approx(X, na.rm = FALSE))
+        res[["X"]] <- X
     }
-
+    class(res) <- c("diag", class(res))
+    res
+}
 
 
 

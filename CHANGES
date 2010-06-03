@@ -205,3 +205,18 @@ Changes to version 0.0-29
 	
 	o Fixed stray boilerplate "pkg" references in .Rd files. 
 	
+Changes to version 0.0-30
+	
+	o Fixed bug in position.logp with incorrect check for is.null(start) 
+	
+	o added time vector to output of solar.model to make keeping
+	track of the values simpler
+
+
+Changes to version 0.0-30
+	
+	o Modified the algorithm used by position.logp
+
+	o added winoffset argument to position.logp
+
+	o added functions mkMaskObject and "set.mask<-"

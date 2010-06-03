@@ -7,12 +7,13 @@
 \title{ Diagnose and initialize light level estimation. }
 \description{
   Primarily for the purposes of initializing the estimation, these functions
-  can also be used for diagnostic purposes.   \code{position.logp} both produces
-  diagnostic images for each twilight and uses those to initialize position. 
+  can also be used for diagnostic purposes.   \code{position.logp} produces
+  grids of simplistic position likelihood for each twilight and uses
+  those to initialize positions for running estimations. 
 }
 \usage{
 position.logp(model, x1, x2, xrest = NULL, subset = 1:model$n,
-initialize.x = TRUE, start = NULL, end = NULL, prob = 0.8)
+initialize.x = TRUE, start = NULL, end = NULL, prob = 0.8, winoffset = 5)
 
 initialize.x(model, x1, x2, xrest = NULL)
 
@@ -30,7 +31,9 @@ show.segment(model, chain, segment, day, light, k, n = 50, ...)
   \item{subset}{ evaluate subset of segments - default uses all }
   \item{initialize.x}{logical - create initial points for x? }
   \item{prob}{probability - threshold to apply to overlapping quantiles,
-  defaults to 0.8}
+    defaults to 0.8}
+  \item{winoffset}{an odd-numbered window size to use when intersecting
+    subseqent segments - defaults to 5}
 %% initialize.x
 
   %% light.quantile
@@ -48,21 +51,12 @@ show.segment(model, chain, segment, day, light, k, n = 50, ...)
   \item{n}{ length of vector to evaluate  }
    \item{...}{additional arguments to be passed to plot}
 }
-\details{
- The primary function here is \code{position.logp}, for initializing the estimation
- for \code{\link{solar.model}} and \code{\link{metropolis0}}. 
-}
-\value{
 
-}
-\references{ }
+\details{ The primary function here is \code{position.logp}, for
+ initializing the estimation for \code{\link{solar.model}} and
+ \code{\link{metropolis0}}.  } 
+
 \author{Michael D. Sumner }
-\note{
 
-}
-\seealso{ }
-\examples{
-
-}
 \keyword{manip }
 \keyword{dplot }

@@ -63,9 +63,7 @@ POLAR(X, Y, Z)
   \item{Z}{ z-coordinate }
    
 }
-\details{
-  
-}
+
 \value{
  \code{astro} returns a list object with the components of the moon or sun's
  position, 

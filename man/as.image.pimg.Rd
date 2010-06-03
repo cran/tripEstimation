@@ -35,20 +35,9 @@ as.local.pimg(pimg)
 
       \item{\dots}{\code{\dots}}
 }
-\details{
-
-}
-\value{
-
-}
 
 \author{Michael D. Sumner}
-\note{
-}
-\seealso{}
-\examples{
 
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{manip}

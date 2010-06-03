@@ -5,6 +5,7 @@
 \alias{old.mkLookup}
 \alias{mkElevationSeg}
 \alias{mkNLPosterior}
+\alias{k.prior}
 \title{Older versions of solar location estimation}
 \description{
   Some deprecated functions, originally used purely for light level estimation before
@@ -23,12 +24,15 @@ old.find.init(mask, nseg, nlpost, pars = c("Lon", "Lat", "k"))
 old.metropolis(nlpost, lookup, p0, cov0, start, end, iter = 1000, step = 100)
 
 old.mkLookup(x, binArray = TRUE)
+
+k.prior(seg, ps)
 }
 
 \arguments{
   %% mkElevationSeg
-  \item{segments}{ ~~Describe \code{segments} here~~ }
-  \item{day}{ ~~Describe \code{day} here~~ }
+  \item{segments}{ vector identifying the segment of each time and light
+  value}
+  \item{day}{ date-time values in POSIXct }
   
   %% mkNLPosterior
 
@@ -58,25 +62,28 @@ old.mkLookup(x, binArray = TRUE)
   
   %% old.mkLookup
    \item{x}{ image-like object of matrix or array of binary masks }
-  \item{binArray}{ logical: are the masks compressed into bits? }
+   \item{binArray}{ logical: are the masks compressed into bits? }
+
+    \item{seg}{ segment }
+  \item{ps}{ light attenuation value  }
 }
 \details{
-  These functions are included for archival purposes and are not fully supported.
+  These functions are included for legacy purposes, this was the
+  original implementation. 
 
 }
+
 \value{
-  %~Describe the value returned
   If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
+
 
 }
-\references{  }
+
 \author{Michael D. Sumner}
 
-\seealso{   Please use the supported function \code{\link{metropolis}}, with the \code{\link{solar.model}} or
-  \code{\link{satellite.model}}. }
-\examples{
+\seealso{ Please use the more up to date function
+  \code{\link{metropolis}}, with the models such as
+  \code{\link{solar.model}} or \code{\link{satellite.model}}.  }
 
-}
+
 \keyword{ misc }

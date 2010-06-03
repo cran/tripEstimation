@@ -28,16 +28,7 @@ chunk.bin(filename, pimgs, weights = NULL, chunk = 2000, proj = NULL)
   \item{chunk}{  \code{chunk}  }
   \item{proj}{  \code{proj}  }
 }
-\details{
-  
-}
-\value{
 
-}
-
-\examples{
-
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{manip}
