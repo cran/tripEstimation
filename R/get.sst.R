@@ -1,6 +1,6 @@
 get.sst <-
 function(xlim = NULL, ylim = NULL, tlim = NULL, server = "http://atlas.nmfs.hawaii.edu/cgi-bin/reynolds_extract.py") {
-
+    require(sp)
     ## TODO:
     ## checks on coordinate ranges, lengths
     ## file handling, to cache them somehow
@@ -31,7 +31,7 @@ function(xlim = NULL, ylim = NULL, tlim = NULL, server = "http://atlas.nmfs.hawa
     ## try/catches for conversion to gridded?
     files <- files[file.info(files)$size > 0]
 
-    times <-  strptime(basename(files), "RS%Y%j")
+    times <-  as.POSIXct(strptime(basename(files), "RS%Y%j"))
     ord <- order(times)
     files <- files[ord]
     times <- times[ord]
