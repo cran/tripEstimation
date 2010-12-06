@@ -225,3 +225,11 @@ Changes to version 0.0-30
 Changes to version 0.0-33
 	
 	o Added functions get.sst, sst.interp and sst.interp1. 
+	
+Changes to version 0.0-34
+		
+	o Sanity test for NAs and class in the data for mkLookup. 
+	
+Changes to version 0.0-35
+			
+	o Quick patch to replace error introduced to 0.0-34. 

@@ -1,5 +1,9 @@
-"mkLookup" <- function (x, by.segment = TRUE) 
+"mkLookup" <- function (x, by.segment = TRUE)
 {
+
+    if (any(is.na(x$z))) stop("NAs in grid data")
+    if (!by.segment & !is.logical(x$z)) stop("grid data must be a logical matrix")
+
     csize <- c(diff(x$x[1:2]), diff(x$y[1:2]))
     dimXY <- dim(x$z)
     binArray <- FALSE
@@ -20,7 +24,7 @@
         n <- nrow(xy)
         if (any(k)) {
             if (binArray) {
-                f[k] <- bits(x$z[((j[k] - 1) * dim(x$z)[1] + 
+                f[k] <- bits(x$z[((j[k] - 1) * dim(x$z)[1] +
                   i[k]) + bsegs[1:n][k]], (segment[k] - 1)%%31)
                 f == 1
             }
