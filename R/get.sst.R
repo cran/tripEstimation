@@ -1,6 +1,6 @@
 get.sst <-
 function(xlim = NULL, ylim = NULL, tlim = NULL, server = "http://atlas.nmfs.hawaii.edu/cgi-bin/reynolds_extract.py") {
-    require(sp)
+    ## require(sp)  ## removed with new namespace import MDS 2011-10-06
     ## TODO:
     ## checks on coordinate ranges, lengths
     ## file handling, to cache them somehow
@@ -63,3 +63,12 @@ function(xlim = NULL, ylim = NULL, tlim = NULL, server = "http://atlas.nmfs.hawa
     grid0
 }
 
+#get.reyn.sst <- function(filename = "G:/DATA/Reynolds/sst.wkmean.1990-present.nc") {
+#    stopifnot(file.exists(filename))
+#    stopifnot(require(RNetCDF))
+
+#    con <- open.nc(filename)
+#    lon <-
+
+
+#mds}

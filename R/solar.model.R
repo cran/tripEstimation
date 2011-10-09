@@ -59,11 +59,11 @@ if (dmz[1] != (dmx[1] - 1)) stop("number of X-proposals should be one more than 
 
 
   if (!any(grep("longlat", proj.string))) {
-    require(rgdal)
+##    require(rgdal) removed by namespace addition 2011-10-09 MDS
 
     if (!any(grep("km", proj.string))) {
       warning("Distances will be calculated in the units of the coordinate system, but kilometres are assumed for speed.")
-      print(CRS(CRSargs(proj.string)))
+      print(CRSargs(CRS(proj.string)))
     }
     dist <- function(a, b) {
       sqrt(rowSums((a - b)^2)) }
