@@ -141,7 +141,7 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
         if (!is.null(end))  {
             X[(nrow(X) - winoffset+2):nrow(X), 1:2] <- matrix(end, nrow = winoffset - 1, ncol = 2, byrow = TRUE)
         }
-        require(zoo)
+        ## require(zoo) removed by namespace addition MDS 2011-10-06
         res$naX <- X
         X <- as.matrix(na.approx(X, na.rm = FALSE))
         res[["X"]] <- X

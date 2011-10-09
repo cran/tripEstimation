@@ -27,11 +27,12 @@ if (length(day) != nrow(X)) stop("length of times should match number of locatio
 
 
   if (!any(grep("longlat", proj.string))) {
-    require(rgdal)
+      ## removed by namespace MDS 2011-10-06
+      ## require(rgdal)
 
     if (!any(grep("km", proj.string))) {
-      warning("Distances will be calculated in the units of the coordinate system, but kilometres are assumed for speed.")
-      print(CRS(CRSargs(proj.string)))
+      warning("Distances will be calculated in the units of the coordinate system, but kilometres are assumed for the units of speed calculation.")
+      print(CRSargs(CRS(proj.string)))
     }
     dist <- function(a, b) {
       sqrt(rowSums((a - b)^2)) }
