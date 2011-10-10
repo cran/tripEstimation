@@ -1,4 +1,10 @@
+Changes to version 0.0-37
+
+	o reverted to Suggests for locfit, since that package has no namespace
+
 Changes to version 0.0-36
+
+	o added a package NAMESPACE
 
 	o reversed order of CHANGES file entries
 

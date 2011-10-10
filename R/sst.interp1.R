@@ -2,7 +2,8 @@ sst.interp1 <-
 function(x, resolution = NULL,  alpha = 0.05) {
 
     ## removed by addition of namespace, MDS 2011-10-06
-    ## require(locfit)
+    ## cannot remove until 2.14 MDS 2011-10-10
+    require(locfit)
     if(is.null(resolution)) stop("resolution must be specified")
     new.x <- seq(min(x$x), max(x$x), by = resolution[1])
     new.y <- seq(min(x$y), max(x$y), by = resolution[2])
