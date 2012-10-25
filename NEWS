@@ -1,3 +1,9 @@
+Changes to version 0.0-38
+
+	o added check for very short trips that break the windowing in position.logp
+
+	o renamed CHANGES to NEWS
+
 Changes to version 0.0-37
 
 	o reverted to Suggests for locfit, since that package has no namespace
@@ -32,8 +38,8 @@ Changes to version 0.0-33
 Changes to version 0.0-30
 
 
-	track of the values simpler
-	o added time vector to output of solar.model to make keeping
+	
+	o added time vector to output of solar.model to make keeping track of the values simpler
 	
 	o Fixed bug in position.logp with incorrect check for is.null(start) 
 	

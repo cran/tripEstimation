@@ -98,6 +98,9 @@ function (model, x1, x2, xrest = NULL, subset = 1:model$n, initialize.x = TRUE,
 {
 
     n <- model$n
+    if (n < (2 * winoffset - 1)) {
+        stop("too few twilights (", n, ") for winoffset value of ", winoffset, "\n try reducing winoffset value")
+    }
     logp.position <- model$logp.position
     mask.x <- model$mask.x
     logp <- array(0, c(length(x1), length(x2), length(subset)))
