@@ -1,6 +1,6 @@
-700435f0c3c0305b5459070c594a6540 *CHANGES
-06cd714631ae7ef28ff216e5ac13e27f *DESCRIPTION
+5b5aee4e43ccc0e3abffa22431f12e3b *DESCRIPTION
 01e8532d94e92ed4a9d1b11134dcb31b *NAMESPACE
+d453c2c0c57ffb65ef935aafe7e9c3fd *NEWS
 fe8846373bee03ba8d975092ffff223a *R/as.image.pimg.R
 e2979c41982c5a722a9ff0d2420d3c68 *R/as.local.pimg.R
 c42adcb7b427b7eb009cffc08a0fa3d3 *R/as.matrix.pimg.R
@@ -19,7 +19,7 @@ d620d4b926bc30c52548594704a76f2a *R/coords.pimg.R
 1d5911b30569ef79ef71bea1fe62cfdd *R/get.mask.R
 5c62f54497dcf2e82a534c18046b7b87 *R/get.pimgs.R
 14dc16267c56dac236cf9ed43da17c90 *R/get.sst.R
-78039d28f49875a8986b0c7938b967f6 *R/initialize.x.R
+f0af9929501c1b7c3ad007286d4bf615 *R/initialize.x.R
 fe92241fafc5ef03fb43e46d250ee025 *R/julday.R
 1cb350f4f15e4f4b82c6d314dc43f5e7 *R/metropolis.R
 44221cedaf992c3bf5dad66ca081ffbc *R/metropolis0.R
@@ -38,6 +38,7 @@ e9cf130f4a5294f487d890136c47cd3b *R/solar.model.R
 b313d9e56d633a718f39d76653dfd84b *R/sst.interp.R
 ec2c19f772673b353142332011898de4 *R/sst.interp1.R
 64ca4da37197cf12e282a048030dc6a2 *R/unzipper.R
+f6152834319e6347f86110a32709e44b *TODO
 96921b74a7107f3403aeeedcf41ddb64 *man/as.image.pimg.Rd
 455b81de844fdde03817c53acb396f75 *man/astro.Rd
 c0b4d16204e7664620e4fca3bec51244 *man/behav.bin.Rd
