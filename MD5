@@ -1,6 +1,6 @@
-5b5aee4e43ccc0e3abffa22431f12e3b *DESCRIPTION
+c6c2d323eb3edc56d7520c85de441a87 *DESCRIPTION
 01e8532d94e92ed4a9d1b11134dcb31b *NAMESPACE
-d453c2c0c57ffb65ef935aafe7e9c3fd *NEWS
+3eeaee61059c097cb94b64fec6e15101 *NEWS
 fe8846373bee03ba8d975092ffff223a *R/as.image.pimg.R
 e2979c41982c5a722a9ff0d2420d3c68 *R/as.local.pimg.R
 c42adcb7b427b7eb009cffc08a0fa3d3 *R/as.matrix.pimg.R
@@ -35,8 +35,6 @@ f1e9e74a5134a159b0a9a914b1d3e0b9 *R/picksegs.R
 0f1de2678e3d86a1ef7a480332828f77 *R/satellite.model.R
 7ce7acc25b74f8d660f1914720e6097c *R/solar.R
 e9cf130f4a5294f487d890136c47cd3b *R/solar.model.R
-b313d9e56d633a718f39d76653dfd84b *R/sst.interp.R
-ec2c19f772673b353142332011898de4 *R/sst.interp1.R
 64ca4da37197cf12e282a048030dc6a2 *R/unzipper.R
 f6152834319e6347f86110a32709e44b *TODO
 96921b74a7107f3403aeeedcf41ddb64 *man/as.image.pimg.Rd
@@ -59,4 +57,3 @@ f747e32b9e0ec50460eca69f7ad15376 *man/old.metropolis.Rd
 d1c248714ab5d740cc09ca402655b854 *man/satellite.model.Rd
 42126ba454948e7cf1cb178971669ff2 *man/solar.Rd
 84a160c79b1f7aa3e4dbfcf95d2b0950 *man/solar.model.Rd
-b6557e06b57a10d03d43bfc6be6f195a *man/sst.interp.Rd
