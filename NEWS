@@ -1,4 +1,12 @@
-Changes to version 0.0-42
+Changes to version 0.0-44
+
+   o new imports needed for namespace
+   
+   o maintenance release, added startup message to point to SGAT
+   
+   o update outdated link to sp package
+   
+   Changes to version 0.0-42
 
    o update CITATION process for CRAN
 

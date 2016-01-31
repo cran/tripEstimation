@@ -1,6 +1,6 @@
-5a828a238f55010907451193d80ab239 *DESCRIPTION
-01e8532d94e92ed4a9d1b11134dcb31b *NAMESPACE
-558ab44af0acff047f1953ac352ac6ca *NEWS
+8f451d0bacb1160113a3d589a2261e86 *DESCRIPTION
+b9612b6a95a0f2b730bff45ec0edbff0 *NAMESPACE
+4fcce30f026201f1c2673a1818f98c65 *NEWS
 fe8846373bee03ba8d975092ffff223a *R/as.image.pimg.R
 e2979c41982c5a722a9ff0d2420d3c68 *R/as.local.pimg.R
 c42adcb7b427b7eb009cffc08a0fa3d3 *R/as.matrix.pimg.R
@@ -36,7 +36,8 @@ f1e9e74a5134a159b0a9a914b1d3e0b9 *R/picksegs.R
 7ce7acc25b74f8d660f1914720e6097c *R/solar.R
 e9cf130f4a5294f487d890136c47cd3b *R/solar.model.R
 64ca4da37197cf12e282a048030dc6a2 *R/unzipper.R
-a3d9144bc64850917de2b71e9aad01c1 *README.md
+aa7accefbc437a9266217acde46b0438 *R/zzz.r
+4535907c88a4d720309170beabe87c6c *README.md
 f5c265567eec274d156380b4c1aedf9a *TODO
 b3946205c5f3f0f3836f2f3367c21afd *inst/CITATION
 96921b74a7107f3403aeeedcf41ddb64 *man/as.image.pimg.Rd
@@ -51,7 +52,7 @@ d6c3f6187f095c04274b66cf61a0d4ad *man/get.mask.Rd
 346eafbe9afecf26fe6559707349a5d1 *man/julday.Rd
 211d2c929756278f1d6aecc64e5f82c9 *man/metropolis.Rd
 5783069dda06bea822f15be6c3993624 *man/mkCalibration.Rd
-76c189195a56f0093427478ec81ca5e7 *man/mkLookup.Rd
+fa866ec79daaeed4e21f40ff1be7e39a *man/mkLookup.Rd
 550691e274ae865565480895b93d2174 *man/norm.proposal.Rd
 f747e32b9e0ec50460eca69f7ad15376 *man/old.metropolis.Rd
 53d400c999a99e45e48262fbbdde915c *man/pick.Rd
