@@ -1,6 +1,6 @@
-011cacc9d68db2fb6b9de7c5c282d575 *DESCRIPTION
+34510eacc80329966c7c4fd5d036361a *DESCRIPTION
 9b7aeaa9e00a1a46cc2f08f04e0a05e2 *NAMESPACE
-1b6435ff4cccbd6b67b9863f00afb5bf *NEWS
+cd31f7f555e18cc3b8f95af645ac4688 *NEWS
 42d335579b74fd444a2441b80ff9824e *R/as.image.pimg.R
 d93403c3852c04074d282fa024da8a5e *R/as.local.pimg.R
 b0bb5113906cd2b1d5ac88726628a589 *R/as.matrix.pimg.R
@@ -53,6 +53,6 @@ d68dc51c20deb40fd101396644d30f06 *man/norm.proposal.Rd
 19288aa813aec8c98b02897675a3bfe8 *man/old.metropolis.Rd
 269b060e362ef39b89f12444b90957e7 *man/pick.Rd
 8b6339fa29423485eb373c572656d397 *man/pimg.list.Rd
-f23ef0975c5b34df04a064f95e97127a *man/satellite.model.Rd
+d210d21e0ce3ca91f2e604284ce1b805 *man/satellite.model.Rd
 2c6982206411cdadec5b3d0034ff5d61 *man/solar.Rd
-212f44d43e0794b3156cb6c5b3731960 *man/solar.model.Rd
+32a3273f79a288bcafcf1630b32f8f3e *man/solar.model.Rd
